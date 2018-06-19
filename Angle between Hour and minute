@@ -1,0 +1,35 @@
+import java.io.*;
+
+ public class HM {
+    
+    static int calc_angle(int h, int m) {
+    
+    /* Check if the data entered is invalid */
+        if (h < 0 || h > 12 || m< 0 || m > 60) {
+            return -1;
+        }
+    /* Convert 12 h to 00 hrs and 60 mins to 00 mins */
+        if (h == 12) {
+            h = 0;
+        }
+        if (m == 60) {
+            m = 0;
+        }
+    
+    /* calculate hours and minutes angle */
+        int hr_angle = (int)(0.5 * (h*60 + m));
+        int min_angle = (int)(6*m);
+    
+    /* calculating the difference between the angle and getting the minimum */
+        int diff  = Math.abs(hr_angle - min_angle);
+        diff = Math.min(diff, 360-diff);
+        
+        return diff;
+    }
+    
+    public static void main( String[] args) {
+        System.out.println(calc_angle(9,60));
+    }
+}
+
+
